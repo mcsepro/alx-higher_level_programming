@@ -1,21 +1,39 @@
 #include "lists.h"
 
 /**
- * is_palindrome - check if a linked list is a palindrome
- * @head: pointer to head of list
- * Return: 0 or 1
+ * pal - recursive helper function to determine if llst is palindrom
+ * @start: start position of list
+ * @end: end position of list
+ *
+ * Return: 1 if list is a palindrome, 0 otherwise
  */
+
+int pal(listint_t **start, listint_t *end)
+{
+	if (end == NULL)
+		return (1);
+
+	if (pal(start, end->next) == 1 && (*start)->n == end->n)
+	{
+		*start = (*start)->next;
+		return (1);
+	}
+
+	return (0);
+}
+
+
+/**
+ * is_palindrome - checks if a singly linked list is a palindrome
+ * @head: list to check
+ *
+ * Return: 1 if list is a palindrome, 0 otherwise
+ */
+
 int is_palindrome(listint_t **head)
 {
-    const listint_t *current;
-    const listint_t *tail;
-    unsigned int n = 0;
+	if (head == NULL || *head == NULL || (*head)->next == NULL)
+		return (1);
 
-    //Get length
-    //Use a function to get a node on a specific index
-    //check the first to the last and, second to second last ....
-    //return false if one check was False
-    //return true at the end (if all passed the checks)
-
-    return (n);
+	return (pal(head, *head));
 }
